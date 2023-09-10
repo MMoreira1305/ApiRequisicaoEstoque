@@ -1,0 +1,111 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+    
+        .btn-new-prof {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+    
+        .btn-new-prof a {
+            text-decoration: none;
+            color: #fff;
+        }
+    
+        .btn-new-prof:hover {
+            background-color: #0056b3;
+        }
+    
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+    
+        .table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+    
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    
+        .table a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    
+        .table a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn-new-prof"><a id="new-prof" href="/usuarios/cadastro">Novo Usuário</a></button>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Setor</th>
+                        <th>Nivel permissão</th>
+                        <th>Login</th>
+                        <th>Senha</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:action="@{/usuarios/{id}}" th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.usuario_nome}">Nome do Usuário</td>
+                        <td th:text="${usuario.usuario_setor.toString()}">Setor</td>
+                        <td th:text="${usuario.usuario_nivelPermissao}">Nivel Permissão</td>
+                        <td th:text="${usuario.login}">Login</td>
+                        <td th:text="${usuario.senha}">Senha</td>
+                        <td><a th:href="@{/usuario/{usuarioId}(usuarioId = ${usuario.id})}">Detalhes</a></td>
+                        <td><a th:href="@{/usuario/{usuarioId}/edit(usuarioId = ${usuario.id})}">Editar</a></td>
+                        <td><a th:href="@{/usuario/delete(usuarioId = ${usuario.id})}">Deletar</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </body>
+    
+    
+    
+    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+    </html>
